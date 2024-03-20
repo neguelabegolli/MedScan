@@ -38,7 +38,7 @@
       [
         "react-native-vision-camera",
         {
-          "cameraPermissionText": "$MedScan needs access to your Camera to scan Medical Reports."
+          "cameraPermissionText": "$MedScan needs to access your Camera to scan Medical Reports."
         }
       ]
     ]

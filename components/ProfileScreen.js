@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Image, Switch, Dimensions} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Switch, Dimensions } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-//TODO: Remove the change password screen later, it isn't needed -- said Philipp
-
+//TODO: I might have to remove the toggle ring button and only allow vibrations for each successful scan!
 const ProfileScreen = () => {
     const navigation = useNavigation();
     const [isVibrationEnabled, setIsVibrationEnabled] = useState(false);
@@ -23,9 +22,39 @@ const ProfileScreen = () => {
         navigation.navigate('HomeScreen');
     };
 
-    const goToChangePasswordScreen = () => {
-        navigation.navigate('ChangePasswordScreen');
+    // Load settings from AsyncStorage when the component mounts
+    useEffect(() => {
+        const loadSettings = async () => {
+            try {
+                const vibrateSetting = await AsyncStorage.getItem('vibrateSetting');
+                const ringSetting = await AsyncStorage.getItem('ringSetting');
+
+                if (vibrateSetting !== null) {
+                    setIsVibrationEnabled(JSON.parse(vibrateSetting));
+                }
+                if (ringSetting !== null) {
+                    setIsRingEnabled(JSON.parse(ringSetting));
+                }
+            } catch (error) {
+                console.error('Error loading settings: ', error);
+            }
+        };
+
+        loadSettings();
+    }, []);
+
+    const saveSettings = async () => {
+        try {
+            await AsyncStorage.setItem('vibrateSetting', JSON.stringify(isVibrationEnabled));
+            await AsyncStorage.setItem('ringSetting', JSON.stringify(isRingEnabled));
+        } catch (error) {
+            console.error('Error saving settings: ', error);
+        }
     };
+
+    useEffect(() => {
+        saveSettings();
+    }, [isVibrationEnabled, isRingEnabled]);
 
     return (
         <View style={styles.container}>
@@ -67,9 +96,6 @@ const ProfileScreen = () => {
                     />
                 </View>
                 <Text style={styles.title}>Log-In Information</Text>
-                <TouchableOpacity style={styles.buttonContainer} onPress={goToChangePasswordScreen}>
-                    <Text style={styles.largeText}>Change Password</Text>
-                </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonContainer}>
                     <View>
                         <Text style={[styles.largeText, { marginBottom: 5 }]}>Delete Account</Text>
@@ -127,10 +153,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     logo: {
-        width: 130,
-        height: 130,
+        width: 180,
+        height: 180,
         resizeMode: 'contain',
-        bottom: 30,
+        bottom: 50,
     },
     containerColumn: {
         width: '85%',
@@ -140,12 +166,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: '100%',
-        height: 55,
         backgroundColor: '#333333',
         borderRadius: 10,
         marginVertical: 10,
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         paddingVertical: 10,
     },
     title: {
@@ -153,6 +177,7 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         color: 'white',
         textAlign: 'left',
+
     },
     largeText: {
         fontSize: 16,
@@ -177,14 +202,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 25,
         borderRadius: 20,
-        shadowColor: '#333333',
-        shadowOffset: {
-            width: 0,
-            height: -3,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        elevation: 5,
     },
     historyButton: {
         alignItems: 'center',

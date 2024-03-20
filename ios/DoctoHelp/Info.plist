@@ -27,7 +27,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.yourcompany.doctohelp</string>
+				<string>com.i.doctohelp</string>
 			</array>
 		</dict>
 	</array>

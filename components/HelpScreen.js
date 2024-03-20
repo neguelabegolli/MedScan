@@ -3,15 +3,17 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, Linking } from 'react-
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-//TODO: Add a background for each slide
-//TODO: Fix every Photo to be of the same size
+
+//TODO: Change the photo of the continue scanning slide...
 
 const HelpScreen = ({ navigation }) => {
     const goBack = () => {
+        console.log('Going back from HelpScreen...');
         navigation.goBack();
     };
 
     const handleEmailPress = () => {
+        console.log('Opening email application...');
         Linking.openURL('mailto:xyz@mytum.de');
     };
 
@@ -35,15 +37,14 @@ const HelpScreen = ({ navigation }) => {
                         style={styles.image}
                     />
                     <Text style={styles.description}>Once clicking on 'Start Scanning',
-                        you will be forwarded to the camera. Lay your
-                        QR-Code on a flat, well-lightened space, so that the scanning process runs smoothly.</Text>
+                        you will be forwarded to the camera. Lay the Medical Report on a flat, well-lightened space, so that the scanning process runs smoothly.</Text>
                 </View>
                 <View style={styles.slide}>
                     <Image
                         source={require('../assets/Helpscreen2.png')}
                         style={styles.image}
                     />
-                    <Text style={styles.description}>Keep your smartphone still above the QR-Code, and try to place it inside the frame,
+                    <Text style={styles.description}>Keep your smartphone still above the Data Matrix, and try to place it inside the frame,
                         so that the camera recognizes it.</Text>
                 </View>
                 <View style={styles.slide}>
@@ -51,8 +52,8 @@ const HelpScreen = ({ navigation }) => {
                         source={require('../assets/Helpscreen3.png')}
                         style={styles.image}
                     />
-                    <Text style={styles.description}>Once the QR-Code is recognized, you will
-                        see: 'Scanning successfully completed!' and
+                    <Text style={styles.description}>Once the Data Matrix is recognized, you will
+                        see: 'Scanning successfully completed!' window on your screen and
                         a button saying 'Continue Scanning'.</Text>
                 </View>
                 <View style={styles.slide}>
@@ -60,16 +61,16 @@ const HelpScreen = ({ navigation }) => {
                         source={require('../assets/Helpscreen4.png')}
                         style={styles.image}
                     />
-                    <Text style={styles.description}>If you click on 'Continue Scanning' you can keep on scanning as many
-                        QR-Codes as you wish. However, if you wish to see what you have already
-                        scanned, you can click on the History Tab.</Text>
+                    <Text style={styles.description}>If you click on 'Continue Scanning' you can keep on scanning. However, if you wish to stop you can click on 'Go Back'-Button, which will forward
+                        you on the Home Screen. If you wish to see what you have already
+                        scanned, click on the History Tab.</Text>
                 </View>
                 <View style={styles.slide}>
                     <Image
                         source={require('../assets/Helpscreen5.png')}
                         style={styles.image}
                     />
-                    <Text style={styles.description}>If you have any further questions or issues, please do not
+                    <Text style={styles.description}>For any further questions or issues, please do not
                         hesitate to contact our trusted Support Team Members on:{' '}
                         <TouchableOpacity onPress={handleEmailPress}>
                             <Text style={styles.emailLink}>xyz@mytum.de</Text>

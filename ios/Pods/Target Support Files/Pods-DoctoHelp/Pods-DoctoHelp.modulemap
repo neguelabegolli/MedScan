@@ -1,6 +1,0 @@
-module Pods_DoctoHelp {
-  umbrella header "Pods-DoctoHelp-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import ScanContext from './ScanContext';
 import { useNavigation } from "@react-navigation/native";
 
 //TODO: Everything scanned should appear here, even though we might close the app,
-// After logging out nothing should appear here at first
-
+// After logging out nothing should appear here
 
 const HistoryScreen = () => {
     const navigation = useNavigation();
@@ -28,9 +27,6 @@ const HistoryScreen = () => {
         const parts = dataType.split('.');
         return parts[parts.length - 1]; // Extracting the last part after splitting by '.'
     };
-
-
-// Inside your HistoryScreen component
 
     return (
         <View style={styles.container}>
@@ -136,14 +132,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 25,
         borderRadius: 20,
-        shadowColor: '#66b2ff',
-        shadowOffset: {
-            width: 0,
-            height: -3,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        elevation: 5,
     },
     historyButton: {
         alignItems: 'center',

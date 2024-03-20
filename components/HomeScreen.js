@@ -4,25 +4,26 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 
-//TODO: remove back buttons, not needed when we have the toolbar
-// Why does it still go back, I only want to use the toolbar to do that
-
 const HomeScreen = () => {
     const navigation = useNavigation();
 
     const goToHelpScreen = () => {
+        console.log('Navigating to HelpScreen...');
         navigation.navigate('HelpScreen');
     };
 
     const goToProfileScreen = () => {
+        console.log('Navigating to ProfileScreen...');
         navigation.navigate('ProfileScreen');
     };
 
     const goToHistoryScreen = () => {
+        console.log('Navigating to HistoryScreen...');
         navigation.navigate('HistoryScreen');
     };
 
     const startScanningQR = () => {
+        console.log('Starting QR scanning...');
         navigation.navigate('QRScannerScreen');
     };
 
@@ -109,14 +110,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 6,
         borderColor: 'rgb(63,63,63)',
-        shadowColor: '#333333',
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
-        elevation: 3,
     },
     logoContainer: {
         alignItems: 'center',

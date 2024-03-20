@@ -12,7 +12,6 @@ import QRScannerScreen from "./components/QRScannerScreen";
 import ChangePasswordScreen from "./components/ChangePasswordScreen";
 import {ScanProvider} from "./components/ScanContext";
 
-
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -23,13 +22,12 @@ const App = () => {
                 <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="SecondLoginScreen" component={SecondLoginScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false, gestureEnabled: false }} />
                 <Stack.Screen name="HelpScreen" component={HelpScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="HistoryScreen" component={HistoryScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false, gestureEnabled: false }} />
+                <Stack.Screen name="HistoryScreen" component={HistoryScreen} options={{ headerShown: false, gestureEnabled: false}} />
                 <Stack.Screen name="QRScannerScreen" component={QRScannerScreen} options={{ headerShown: false}} />
-                <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} options={{ headerShown: false }}
-                />
+                <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
         </ScanProvider>

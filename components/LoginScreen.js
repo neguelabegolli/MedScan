@@ -1,19 +1,19 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, Image, Dimensions } from 'react-native';
-import { useFonts } from "expo-font";
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, Image, Dimensions, Linking } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const LoginScreen = ({ navigation }) => {
     const handleSignIn = () => {
+        console.log('Signing in...');
         navigation.navigate('SecondLoginScreen');
     };
 
-    //const [fontsLoaded] = useFonts({
-    //    'Urbanist': require('../assets/Urbanist-Regular.ttf'),
-    //    'Urbanist-Bold': require('../assets/Urbanist-Bold.ttf'),
-    //});
+    const handleSignUp = () => {
+        console.log('Signing in...');
+        Linking.openURL('https://doctorsplatform.vercel.app/sign-up');
+    };
 
     return (
         <ImageBackground
@@ -40,7 +40,7 @@ const LoginScreen = ({ navigation }) => {
                         Don't have an account yet?{'\n'}
                         <Text
                             style={styles.signUpText}
-                            onPress={() => navigation.navigate('SignUpScreen')}>
+                            onPress={handleSignUp}>
                             Sign up
                         </Text>
                     </Text>
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
-        //fontFamily: 'Urbanist-Bold',
     },
     signUpContainer: {
         alignItems: 'center',
@@ -105,15 +104,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: 'white',
         textAlign: 'center',
-        //fontFamily: 'Urbanist-Regular',
     },
     signUpText: {
         textDecorationLine: 'underline',
         color: '#333333',
         fontWeight: 'bold',
-        //fontFamily: 'Urbanist-Bold',
     },
 });
 
 export default LoginScreen;
-

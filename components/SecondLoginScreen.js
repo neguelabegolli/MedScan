@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import {useFonts} from "expo-font";
 
 /*
 TODO: Ask Philipp where should we forward when someone clicks on "Forgot Password"
-TODO: When clicking on remember me the data shall be saved,
-      when the person logs out and logs in again the account shall be suggested.
+TODO: When clicking on remember me the data shall be saved
+TODO: Fix the authentication with Indri
  */
+
 const SecondLoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,13 +17,14 @@ const SecondLoginScreen = ({ navigation }) => {
     const handleLogin = () => {
         // TODO: Implement login functionality (authentication part)
         // For now, I have simulated a successful login
+        console.log('Logging in...');
         navigation.navigate('HomeScreen');
     };
 
-    //const [fontsLoaded] = useFonts({
-    //    'Urbanist': require('../assets/Urbanist-Regular.ttf'),
-    //    'Urbanist-Bold': require('../assets/Urbanist-Bold.ttf'),
-    //});
+    const handleForgotPassword = () => {
+        console.log('Forgot password clicked');
+        // TODO: Implement navigation to the forgot password screen
+    };
 
     return (
         <ImageBackground

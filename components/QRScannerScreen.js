@@ -1,16 +1,11 @@
 import React, {useState, useEffect, useRef, useContext} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image, Vibration, Alert, Platform, Linking} from 'react-native';
 import { Camera } from 'expo-camera';
-//import {useCameraPermissions} from 'react-native-vision-camera'
 import { MaterialIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
 import ScanContext from "./ScanContext";
-
-//TODO: My react-native-vision-camera isn't working -- if that works as planned then I will be able to fix the following
-//TODO: I want to be able to focus, to zoom appropriately, and I also to have a frame in the centre
-//TODO: Ba able to change the exposure
-//TODO: Furthermore It seems to have some kind of bug when scanning complicated DataMatrices and/or Aztecs
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const QRScannerScreen = () => {
     const [hasPermission, setHasPermission] = useState(null);
@@ -21,31 +16,71 @@ const QRScannerScreen = () => {
     const cameraRef = useRef(null);
     const navigation = useNavigation();
 
-    //Requesting for camera permission
+    //Vibration/Ring logic
+    const [isVibrationEnabled, setIsVibrationEnabled] = useState(false);
+    const [isRingEnabled, setIsRingEnabled] = useState(false);
+
     useEffect(() => {
-        (async () => {
+        const requestCameraPermission = async () => {
             const { status } = await Camera.requestCameraPermissionsAsync();
             setHasPermission(status === 'granted');
-        })();
+            if (status !== 'granted') {
+                showPermissionAlert();
+            }
+        };
+
+        requestCameraPermission();
     }, []);
 
-    //Adding the scanned data to the history tab
+    //Async Storage:
+    useEffect(() => {
+        const loadSettings = async () => {
+            try {
+                const vibrateSetting = await AsyncStorage.getItem('vibrateSetting');
+                const ringSetting = await AsyncStorage.getItem('ringSetting');
+
+                if (vibrateSetting !== null) {
+                    setIsVibrationEnabled(JSON.parse(vibrateSetting));
+                }
+                if (ringSetting !== null) {
+                    setIsRingEnabled(JSON.parse(ringSetting));
+                }
+            } catch (error) {
+                console.error('Error loading settings: ', error);
+            }
+        };
+
+        loadSettings();
+    }, []);
+
+    //Adding the scanned data to the history tab:
     const { addScanToHistory } = useContext(ScanContext);
 
+    //Handling all the scanned barcodes:
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
         setScannedData(data);
         addScanToHistory(data, type);
+
+        if (isVibrationEnabled) {
+            // Trigger vibration
+            // You can implement vibration logic here
+            Vibration.vibrate();
+        }
     };
+
+    const MAX_DISPLAY_LENGTH = 30;
 
     //Torch functionality
     const toggleTorch = () => {
         setTorchOn((prev) => !prev);
     };
 
-    //Zoom Slider functionality which should be removed
     const handleZoomSlider = (value) => {
-        setZoom(value);
+        const maxZoomLevel = 2;
+        const sliderMaxValue = 100;
+        const mappedZoom = (value / sliderMaxValue) * maxZoomLevel;
+        setZoom(mappedZoom);
     };
 
     //Window after scanning
@@ -59,13 +94,36 @@ const QRScannerScreen = () => {
         navigation.navigate('HomeScreen');
     };
 
+    // Function to handle sending data to the backend
+    const sendDataToBackend = () => {
+        // TODO: Implement sending data logic here
+        addScanToHistory(scannedData, 'Data Matrix', 'Sent to Backend', true)
+    };
+
+    // Function to handle the permission prompt
+    const showPermissionAlert = () => {
+        Alert.alert(
+            'Camera Permission Required',
+            'Please grant camera permission to start scanning.',
+            [
+                {
+                    text: 'Go to Settings',
+                    onPress: () => Platform.OS === 'android' ? Linking.openSettings() : Linking.openURL('app-settings:'),
+                },
+                {
+                    text: 'Do it Later'
+                }
+            ],
+            { cancelable: false }
+        );
+    };
+
+
     //UI Rendering
     if (hasPermission === null) {
         return <Text>Requesting for camera permission</Text>;
     }
-    if (hasPermission === false) {
-        return <Text>No access to camera</Text>;
-    }
+
 
     return (
         <View style={styles.container}>
@@ -75,6 +133,7 @@ const QRScannerScreen = () => {
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                 flashMode={torchOn ? Camera.Constants.FlashMode.torch : Camera.Constants.FlashMode.off}
                 zoom={zoom}
+                autoFocus={true}
             />
             {!scanned && (
                 <TouchableOpacity onPress={toggleTorch} style={styles.torchButton}>
@@ -102,15 +161,27 @@ const QRScannerScreen = () => {
                         style={styles.logo}
                     />
                     <Text style={styles.successfulScanning}>Data was successfully scanned!</Text>
-                    <Text style={styles.scanDataText}>Scanned Data: {scannedData}</Text>
+                    <Text style={styles.scanDataText}>
+                        Scanned Data: {scannedData.length > MAX_DISPLAY_LENGTH ?
+                        scannedData.substring(0, MAX_DISPLAY_LENGTH) + "..." :
+                        scannedData}
+                    </Text>
+                    <View style={styles.buttonContainer}>
                     <TouchableOpacity
-                        style={styles.continueButton}
+                        style={styles.button}
                         onPress={continueScanning}
                     >
                         <Text style={styles.buttonText}>Continue Scanning</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={[styles.continueButton, { backgroundColor: '#66b2ff', marginTop: 20 }]}
+                        style={styles.button}
+                        onPress={sendDataToBackend} // Call function to send data to backend
+                    >
+                        <Text style={styles.buttonText}>Send Data</Text>
+                    </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity
+                        style={[styles.button, { backgroundColor: '#66b2ff', marginTop: 20,}]}
                         onPress={goToHomeScreen}
                     >
                         <Text style={styles.buttonText}>Go Back</Text>
@@ -161,11 +232,13 @@ const styles = StyleSheet.create({
         marginTop: 8,
         fontWeight: '200',
     },
-    continueButton: {
+    button: {
         backgroundColor: '#333333',
         borderRadius: 15,
         paddingVertical: 15,
         paddingHorizontal: 70,
+        marginBottom: 5,
+        marginTop: 5,
 
     },
     buttonText: {
@@ -193,7 +266,7 @@ const styles = StyleSheet.create({
         borderRadius: 90,
     },
     zoomSlider: {
-        width: '70%',
+        width: '70%'
     },
 });
 
