@@ -6,9 +6,10 @@ import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
 import ScanContext from "./ScanContext";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import useCameraPermission from "../hooks/usecameraPermission";
+import useVibrationSoundEffects from "../hooks/useVibrationSoundEffects";
 
 const QRScannerScreen = () => {
-    const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [scannedData, setScannedData] = useState(null);
     const [torchOn, setTorchOn] = useState(false);
@@ -16,42 +17,10 @@ const QRScannerScreen = () => {
     const cameraRef = useRef(null);
     const navigation = useNavigation();
 
-    //Vibration/Ring logic
-    const [isVibrationEnabled, setIsVibrationEnabled] = useState(false);
-    const [isRingEnabled, setIsRingEnabled] = useState(false);
+    // Fetch camera permission status using the custom hook
+    const hasPermission = useCameraPermission();
 
-    useEffect(() => {
-        const requestCameraPermission = async () => {
-            const { status } = await Camera.requestCameraPermissionsAsync();
-            setHasPermission(status === 'granted');
-            if (status !== 'granted') {
-                showPermissionAlert();
-            }
-        };
-
-        requestCameraPermission();
-    }, []);
-
-    //Async Storage:
-    useEffect(() => {
-        const loadSettings = async () => {
-            try {
-                const vibrateSetting = await AsyncStorage.getItem('vibrateSetting');
-                const ringSetting = await AsyncStorage.getItem('ringSetting');
-
-                if (vibrateSetting !== null) {
-                    setIsVibrationEnabled(JSON.parse(vibrateSetting));
-                }
-                if (ringSetting !== null) {
-                    setIsRingEnabled(JSON.parse(ringSetting));
-                }
-            } catch (error) {
-                console.error('Error loading settings: ', error);
-            }
-        };
-
-        loadSettings();
-    }, []);
+    const [isVibrationEnabled, isRingEnabled] = useVibrationSoundEffects();
 
     //Adding the scanned data to the history tab:
     const { addScanToHistory } = useContext(ScanContext);
@@ -98,24 +67,6 @@ const QRScannerScreen = () => {
     const sendDataToBackend = () => {
         // TODO: Implement sending data logic here
         addScanToHistory(scannedData, 'Data Matrix', 'Sent to Backend', true)
-    };
-
-    // Function to handle the permission prompt
-    const showPermissionAlert = () => {
-        Alert.alert(
-            'Camera Permission Required',
-            'Please grant camera permission to start scanning.',
-            [
-                {
-                    text: 'Go to Settings',
-                    onPress: () => Platform.OS === 'android' ? Linking.openSettings() : Linking.openURL('app-settings:'),
-                },
-                {
-                    text: 'Do it Later'
-                }
-            ],
-            { cancelable: false }
-        );
     };
 
 
