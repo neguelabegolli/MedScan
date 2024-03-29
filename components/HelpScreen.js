@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, Linking } from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Image, Linking, Dimensions} from 'react-native';
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/AntDesign';
+import styles from "../component_style/HelpScreenStyle"
 
-
-//TODO: Change the photo of the continue scanning slide...
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const HelpScreen = ({ navigation }) => {
     const goBack = () => {
@@ -32,45 +33,55 @@ const HelpScreen = ({ navigation }) => {
             </View>
             <Swiper style={styles.wrapper} showsButtons={false} loop={false}>
                 <View style={styles.slide}>
+                    <View style={[styles.circle, { backgroundColor: 'white', width: windowWidth * 0.9, height: windowWidth * 0.9, borderRadius: windowWidth * 0.9 / 2, top: windowHeight * 0.20, left: windowWidth * 0.05, shadowColor: '#333333', shadowOffset: { width: windowWidth * 0.05, height: windowHeight * 0.05}, shadowOpacity: 0.20, shadowRadius: 3.85, elevation: 20 }]} />
                     <Image
-                        source={require('../assets/Helpscreen1.png')}
-                        style={styles.image}
+                        source={require('../assets/phone.png')}
+                        style={[styles.image, { width: windowWidth * 0.9, height: windowWidth * 0.75, bottom: windowHeight * 0.03 }]}
                     />
-                    <Text style={styles.description}>Once clicking on 'Start Scanning',
-                        you will be forwarded to the camera. Lay the Medical Report on a flat, well-lightened space, so that the scanning process runs smoothly.</Text>
+                    <Text style={styles.title}>START SCANNING</Text>
+                    <Text style={styles.description}>Once clicking on 'Start Scanning', you will be forwarded to the camera.
+                        Lay the Medical Report on a flat, well-lightened space, so that the scanning process runs smoothly.
+                    </Text>
                 </View>
                 <View style={styles.slide}>
+                    <View style={[styles.circle, { backgroundColor: 'white', width: windowWidth * 0.9, height: windowWidth * 0.9, borderRadius: windowWidth * 0.9 / 2, top: windowHeight * 0.20, left: windowWidth * 0.05, shadowColor: '#333333', shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03}, shadowOpacity: 0.20, shadowRadius: 3.85, elevation: 20 }]} />
                     <Image
-                        source={require('../assets/Helpscreen2.png')}
-                        style={styles.image}
+                        source={require('../assets/pngtree-qr-code-scanner-for-online-payment-picture-image_8128705.png')}
+                        style={[styles.image, { width: windowWidth * 0.8, height: windowWidth * 0.8, bottom: windowHeight * 0.07}]}
                     />
-                    <Text style={styles.description}>Keep your smartphone still above the Data Matrix, and try to place it inside the frame,
-                        so that the camera recognizes it.</Text>
+                    <Text style={styles.title2}>STAND STILL & SCAN</Text>
+                    <Text style={styles.description2}>Keep your smartphone still above the Data-Matrix, so it is easily recognized. </Text>
                 </View>
                 <View style={styles.slide}>
+                    <View style={[styles.circle, { backgroundColor: 'white', width: windowWidth * 0.9, height: windowWidth * 0.9, borderRadius: windowWidth * 0.9 / 2, top: windowHeight * 0.20, left: windowWidth * 0.05, shadowColor: '#333333', shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03}, shadowOpacity: 0.20, shadowRadius: 3.85, elevation: 20 }]} />
                     <Image
-                        source={require('../assets/Helpscreen3.png')}
-                        style={styles.image}
+                        source={require('../assets/scan-to-pay-qr-code-payment-with-smartphone-success-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg')}
+                        style={[styles.image, { width: windowWidth * 0.58, height: windowWidth * 0.58, bottom: windowHeight * 0.03 }]}
                     />
-                    <Text style={styles.description}>Once the Data Matrix is recognized, you will
-                        see: 'Scanning successfully completed!' window on your screen and
-                        a button saying 'Continue Scanning'.</Text>
+                    <Text style={styles.title3}>SUCCESSFUL SCANNING</Text>
+                    <Text style={styles.description3}>Once recognized, you will
+                        see a 'Data was successfully scanned!' Window on your screen and
+                        three buttons as follows: 'Continue Scanning', 'Send Data', and 'Go Back'.</Text>
                 </View>
                 <View style={styles.slide}>
+                    <View style={[styles.circle, { backgroundColor: 'white', width: windowWidth * 0.9, height: windowWidth * 0.9, borderRadius: windowWidth * 0.9 / 2, top: windowHeight * 0.20, left: windowWidth * 0.05, shadowColor: '#333333', shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03}, shadowOpacity: 0.20, shadowRadius: 3.85, elevation: 20 }]} />
                     <Image
-                        source={require('../assets/Helpscreen4.png')}
-                        style={styles.image}
+                        source={require('../assets/3342004.png')}
+                        style={[styles.image, { width: windowWidth * 0.7, height: windowWidth * 0.7, bottom: windowHeight * 0.01 }]}
                     />
-                    <Text style={styles.description}>If you click on 'Continue Scanning' you can keep on scanning. However, if you wish to stop you can click on 'Go Back'-Button, which will forward
-                        you on the Home Screen. If you wish to see what you have already
-                        scanned, click on the History Tab.</Text>
+                    <Text style={styles.title4}>KNOW THE BUTTONS</Text>
+                    <Text style={styles.description}>If you click on 'Continue Scanning' you can keep on scanning.
+                        If you wish to send the data to your PC, click on 'Send Data'.
+                        If you wish to stop scanning, click on 'Go Back'.</Text>
                 </View>
                 <View style={styles.slide}>
+                    <View style={[styles.circle, { backgroundColor: 'white', width: windowWidth * 0.9, height: windowWidth * 0.9, borderRadius: windowWidth * 0.9 / 2, top: windowHeight * 0.20, left: windowWidth * 0.05, shadowColor: '#333333', shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03}, shadowOpacity: 0.20, shadowRadius: 3.85, elevation: 20 }]} />
                     <Image
-                        source={require('../assets/Helpscreen5.png')}
-                        style={styles.image}
+                        source={require('../assets/2706950.png')}
+                        style={[styles.image, { width: windowWidth * 0.6, height: windowWidth * 0.6, bottom: windowHeight * 0.05 }]}
                     />
-                    <Text style={styles.description}>For any further questions or issues, please do not
+                    <Text style={styles.title5}>GET ASSISTANCE</Text>
+                    <Text style={styles.description4}>For any further questions or issues, please do not
                         hesitate to contact our trusted Support Team Members on:{' '}
                         <TouchableOpacity onPress={handleEmailPress}>
                             <Text style={styles.emailLink}>xyz@mytum.de</Text>
@@ -82,54 +93,5 @@ const HelpScreen = ({ navigation }) => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#66b2ff',
-    },
-    header: {
-        position: 'absolute',
-        top: 40,
-        left: 10,
-        zIndex: 1,
-    },
-    backButtonContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: 20,
-    },
-    backIcon: {
-        marginRight: 5,
-    },
-    backButton: {
-        color: 'white',
-        fontSize: 17,
-        fontWeight: 'bold',
-    },
-    wrapper: {},
-    slide: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    image: {
-        width: 400,
-        height: 400,
-        resizeMode: 'contain',
-    },
-    description: {
-        color: 'white',
-        fontSize: 16,
-        marginTop: 20,
-        marginLeft: 16,
-        marginRight: 16,
-        textAlign: 'center',
-    },
-    emailLink: {
-        textDecorationLine: 'underline',
-        color: 'blue',
-        fontWeight: 'bold',
-    },
-});
 
 export default HelpScreen;

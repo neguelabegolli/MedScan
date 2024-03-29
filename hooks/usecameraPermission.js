@@ -1,11 +1,9 @@
 import {Camera} from "expo-camera";
-import {useEffect} from "react";
 import * as React from "react";
 import {Alert, Linking, Platform} from "react-native";
 
 export default function useCameraPermission() {
     const [status, setHasPermission] = React.useState(null);
-
 
     React.useEffect(() => {
         const requestCameraPermission = async () => {

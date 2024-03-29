@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet, ImageBackground, Image } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, ImageBackground, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+//import AsyncStorage from '@react-native-async-storage/async-storage
+//import axios from 'axios'
+//import * as SecureStore from 'expo-secure-store'
+//import {useAuth} from '../AuthContext
+import styles from "../component_style/SecondLoginScreenStyle";
 
 /*
 TODO: Ask Philipp where should we forward when someone clicks on "Forgot Password"
@@ -13,12 +18,53 @@ const SecondLoginScreen = ({ navigation }) => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [rememberPassword, setRememberPassword] = useState(false);
+    //const [errorMessage, setErrorMessage] = useState('');
+
+    //const {login} = useAuth();
 
     const handleLogin = () => {
-        // TODO: Implement login functionality (authentication part)
         // For now, I have simulated a successful login
         console.log('Logging in...');
         navigation.navigate('HomeScreen');
+
+
+        // TODO: Implement login functionality (authentication part)
+        // this is the code
+
+        /*if (email == 'neguelabegolli@gmail.com' && password == '123') {
+        login();
+        return;
+        }
+
+        try {
+        const response = await axios.post('http://localhost:3000/api/login', {
+        email: email,
+        password: password,
+        });
+
+        const { isAuthenticated, user } = response.data;
+
+      if (isAuthenticated) {
+      const { id, firstName, lastName } = user;
+
+      const setCookieHeader = response.headers['set-cookie'];
+      if (setCookieHeader) {
+        const cookieValue = setCookieHeader[0].split(';')[0];
+        await SecureStore.setItemAsync('authCookie', cookieValue);
+        console.log('Cookie received', cookieValue);
+      }
+        const userDataToStore = { id,firstName, lastName };
+        await AsyncStorage.setItem('userData', JSON.stringify(userDataToStore));
+        login(userDataToStore);
+      } else {
+        setErrorMessage('Login failed, no cookie received.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setErrorMessage('An error occurred. Please try again.');
+    }
+  };
+        */
     };
 
     const handleForgotPassword = () => {
@@ -88,106 +134,5 @@ const SecondLoginScreen = ({ navigation }) => {
         </ImageBackground>
     );
 };
-
-const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        resizeMode: 'cover',
-        justifyContent: 'center',
-    },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    logo: {
-        position: 'absolute',
-        top: '28%',
-        width: 230,
-        height: 230,
-        resizeMode: 'contain',
-    },
-    inputContainer: {
-        width: '80%',
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-        marginTop: 300,
-    },
-    emailInput: {
-        flex: 1,
-        padding: 10,
-        borderWidth: 1,
-        borderColor: '#333333',
-        borderRadius: 5,
-        backgroundColor: 'white',
-    },
-    passwordContainer: {
-        width: '80%',
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 30,
-    },
-    passwordInput: {
-        flex: 1,
-        padding: 10,
-        borderWidth: 1,
-        borderColor: '#333333',
-        borderRadius: 5,
-        backgroundColor: 'white',
-    },
-    eyeIcon: {
-        position: 'absolute',
-        right: 10,
-        padding: 10,
-    },
-    rememberMeContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-        //fontFamily: 'Urbanist-Regular',
-    },
-    rememberMeText: {
-        marginRight: 10,
-        color: '#333333',
-        //fontFamily: 'Urbanist-Bold',
-    },
-    checkbox: {
-        width: 20,
-        height: 20,
-        borderWidth: 1,
-        borderColor: '#333333',
-        borderRadius: 5,
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    forgotPassword: {
-        textDecorationLine: 'underline',
-        marginBottom: 20,
-        fontWeight: 'bold',
-        fontSize: 14,
-        color: 'white',
-    },
-    loginButton: {
-        position: 'absolute',
-        bottom: 120,
-        paddingVertical: 15,
-        paddingHorizontal: 120,
-        alignItems: 'center',
-        backgroundColor: '#333333',
-        borderRadius: 40,
-        borderWidth: 2,
-        borderColor: '#333333',
-
-    },
-    loginButtonText: {
-        color: 'white',
-        fontSize: 18,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        //fontFamily: 'Urbanist-Bold',
-    },
-});
 
 export default SecondLoginScreen;

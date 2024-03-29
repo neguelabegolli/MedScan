@@ -1,15 +1,20 @@
 import React from 'react';
 import { View, ImageBackground, StyleSheet, Image, Dimensions, Text, TouchableOpacity } from 'react-native';
-import {useFonts} from "expo-font";
+import styles from "../component_style/WelcomeScreenStyle";
 
-const { width, height } = Dimensions.get('window');
+//TODO: Ask Philipp about the XCode build fails and to give permission for the authentication
+
+//TODO: if you have time, tomorrow, try to transfer the entire project to the ThesisApp
+// and check whether the problems persist there. If not give that project as the final one to Philipp
+
+//TODO: Ask Krisela to give you the logic for the toolbar and buttons
+//TODO: Check everything also on the android Version
+
+//TODO: put the other effects on the profile screen
+
 
 const WelcomeScreen = ({ navigation }) => {
 
-    //<const [fontsLoaded] = useFonts({
-    //     'Urbanist': require('../assets/Urbanist-Regular.ttf'),
-    //    'Urbanist-Bold': require('../assets/Urbanist-Bold.ttf'),
-    // });
     const handleContinue = () => {
         // Navigate to the next screen
         navigation.navigate('LoginScreen');
@@ -39,59 +44,5 @@ const WelcomeScreen = ({ navigation }) => {
         </ImageBackground>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    backgroundImage: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-    },
-    logo: {
-        width: width * 0.70,
-        height: width * 0.70,
-        marginTop: height * 0.23,
-        resizeMode: 'contain',
-    },
-    headlines: {
-        marginBottom: height * 0.15,
-        alignItems: 'center',
-    },
-    description: {
-        fontSize: width * 0.045,
-        textAlign: 'center',
-        color: '#333333',
-        fontWeight: '500',
-        top: height * 0.043,
-        //fontFamily: 'Urbanist-Bold',
-    },
-    subDescription: {
-        fontSize: width * 0.040,
-        textAlign: 'center',
-        color: 'white',
-        fontWeight: '400',
-        top: height * 0.045,
-        //fontFamily: 'Urbanist-Regular',
-    },
-    button: {
-        backgroundColor: '#333333',
-        paddingVertical: height * 0.025,
-        paddingHorizontal: width * 0.25,
-        borderRadius: 40,
-        alignItems: 'center',
-        marginBottom: height * 0.04,
-        bottom: 70,
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: width * 0.045,
-        fontWeight: 'bold',
-        //fontFamily: 'Urbanist-Bold',
-    },
-});
 
 export default WelcomeScreen;

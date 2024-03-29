@@ -16,7 +16,6 @@ export const ScanProvider = ({ children }) => {
         setScanHistory((prevHistory) => [...prevHistory, scanEntry]);
     };
 
-
     return (
         <ScanContext.Provider value={{ scanHistory, addScanToHistory }}>
             {children}
