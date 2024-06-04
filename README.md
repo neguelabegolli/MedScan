@@ -25,7 +25,7 @@ it will be used to ensure safe clincal decisions.
 ![Guidance](https://github.com/neguelabegolli/MedScan/assets/74466281/b0fb5a20-ced1-4341-b78b-efe34baa7341)
 ![Profile](https://github.com/neguelabegolli/MedScan/assets/74466281/fbc339a2-ad4c-4333-9c57-175c460e6eb1)
 
-### Prerequisites 
+## Prerequisites 
 
 - Node.js
 - npm or yarn
