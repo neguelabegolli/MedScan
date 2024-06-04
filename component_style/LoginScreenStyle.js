@@ -64,5 +64,4 @@ const LoginScreenStyle = StyleSheet.create({
         fontWeight: 'bold',
     },
 });
-
 export default LoginScreenStyle;

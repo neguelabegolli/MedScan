@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, Image, Dimensions, Linking } from 'react-native';
 import styles from "../component_style/LoginScreenStyle"
 
+//nothing to be changed here
 const LoginScreen = ({ navigation }) => {
     const handleSignIn = () => {
         console.log('Signing in...');
@@ -47,5 +48,6 @@ const LoginScreen = ({ navigation }) => {
         </ImageBackground>
     );
 };
+
 
 export default LoginScreen;

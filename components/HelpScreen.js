@@ -7,6 +7,7 @@ import styles from "../component_style/HelpScreenStyle"
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+//nothing to be changed here
 const HelpScreen = ({ navigation }) => {
     const goBack = () => {
         console.log('Going back from HelpScreen...');
@@ -33,7 +34,18 @@ const HelpScreen = ({ navigation }) => {
             </View>
             <Swiper style={styles.wrapper} showsButtons={false} loop={false}>
                 <View style={styles.slide}>
-                    <View style={[styles.circle, { backgroundColor: 'white', width: windowWidth * 0.9, height: windowWidth * 0.9, borderRadius: windowWidth * 0.9 / 2, top: windowHeight * 0.20, left: windowWidth * 0.05, shadowColor: '#333333', shadowOffset: { width: windowWidth * 0.05, height: windowHeight * 0.05}, shadowOpacity: 0.20, shadowRadius: 3.85, elevation: 20 }]} />
+                    <View style={[styles.circle, {
+                        backgroundColor: 'white',
+                        width: windowWidth * 0.9,
+                        height: windowWidth * 0.9,
+                        borderRadius: windowWidth * 0.9 / 2,
+                        top: windowHeight * 0.20,
+                        left: windowWidth * 0.05,
+                        shadowColor: '#333333',
+                        shadowOffset: { width: windowWidth * 0.05, height: windowHeight * 0.05},
+                        shadowOpacity: 0.20,
+                        shadowRadius: 3.85,
+                        elevation: 20 }]} />
                     <Image
                         source={require('../assets/phone.png')}
                         style={[styles.image, { width: windowWidth * 0.9, height: windowWidth * 0.75, bottom: windowHeight * 0.03 }]}
@@ -44,7 +56,18 @@ const HelpScreen = ({ navigation }) => {
                     </Text>
                 </View>
                 <View style={styles.slide}>
-                    <View style={[styles.circle, { backgroundColor: 'white', width: windowWidth * 0.9, height: windowWidth * 0.9, borderRadius: windowWidth * 0.9 / 2, top: windowHeight * 0.20, left: windowWidth * 0.05, shadowColor: '#333333', shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03}, shadowOpacity: 0.20, shadowRadius: 3.85, elevation: 20 }]} />
+                    <View style={[styles.circle, {
+                        backgroundColor: 'white',
+                        width: windowWidth * 0.9,
+                        height: windowWidth * 0.9,
+                        borderRadius: windowWidth * 0.9 / 2,
+                        top: windowHeight * 0.20,
+                        left: windowWidth * 0.05,
+                        shadowColor: '#333333',
+                        shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03},
+                        shadowOpacity: 0.20,
+                        shadowRadius: 3.85,
+                        elevation: 20 }]} />
                     <Image
                         source={require('../assets/pngtree-qr-code-scanner-for-online-payment-picture-image_8128705.png')}
                         style={[styles.image, { width: windowWidth * 0.8, height: windowWidth * 0.8, bottom: windowHeight * 0.07}]}
@@ -53,7 +76,18 @@ const HelpScreen = ({ navigation }) => {
                     <Text style={styles.description2}>Keep your smartphone still above the Data-Matrix, so it is easily recognized. </Text>
                 </View>
                 <View style={styles.slide}>
-                    <View style={[styles.circle, { backgroundColor: 'white', width: windowWidth * 0.9, height: windowWidth * 0.9, borderRadius: windowWidth * 0.9 / 2, top: windowHeight * 0.20, left: windowWidth * 0.05, shadowColor: '#333333', shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03}, shadowOpacity: 0.20, shadowRadius: 3.85, elevation: 20 }]} />
+                    <View style={[styles.circle, {
+                        backgroundColor: 'white',
+                        width: windowWidth * 0.9,
+                        height: windowWidth * 0.9,
+                        borderRadius: windowWidth * 0.9 / 2,
+                        top: windowHeight * 0.20,
+                        left: windowWidth * 0.05,
+                        shadowColor: '#333333',
+                        shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03},
+                        shadowOpacity: 0.20,
+                        shadowRadius: 3.85,
+                        elevation: 20 }]} />
                     <Image
                         source={require('../assets/scan-to-pay-qr-code-payment-with-smartphone-success-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg')}
                         style={[styles.image, { width: windowWidth * 0.58, height: windowWidth * 0.58, bottom: windowHeight * 0.03 }]}
@@ -64,7 +98,18 @@ const HelpScreen = ({ navigation }) => {
                         three buttons as follows: 'Continue Scanning', 'Send Data', and 'Go Back'.</Text>
                 </View>
                 <View style={styles.slide}>
-                    <View style={[styles.circle, { backgroundColor: 'white', width: windowWidth * 0.9, height: windowWidth * 0.9, borderRadius: windowWidth * 0.9 / 2, top: windowHeight * 0.20, left: windowWidth * 0.05, shadowColor: '#333333', shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03}, shadowOpacity: 0.20, shadowRadius: 3.85, elevation: 20 }]} />
+                    <View style={[styles.circle, {
+                        backgroundColor: 'white',
+                        width: windowWidth * 0.9,
+                        height: windowWidth * 0.9,
+                        borderRadius: windowWidth * 0.9 / 2,
+                        top: windowHeight * 0.20,
+                        left: windowWidth * 0.05,
+                        shadowColor: '#333333',
+                        shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03},
+                        shadowOpacity: 0.20,
+                        shadowRadius: 3.85,
+                        elevation: 20 }]} />
                     <Image
                         source={require('../assets/3342004.png')}
                         style={[styles.image, { width: windowWidth * 0.7, height: windowWidth * 0.7, bottom: windowHeight * 0.01 }]}
@@ -75,7 +120,18 @@ const HelpScreen = ({ navigation }) => {
                         If you wish to stop scanning, click on 'Go Back'.</Text>
                 </View>
                 <View style={styles.slide}>
-                    <View style={[styles.circle, { backgroundColor: 'white', width: windowWidth * 0.9, height: windowWidth * 0.9, borderRadius: windowWidth * 0.9 / 2, top: windowHeight * 0.20, left: windowWidth * 0.05, shadowColor: '#333333', shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03}, shadowOpacity: 0.20, shadowRadius: 3.85, elevation: 20 }]} />
+                    <View style={[styles.circle, {
+                        backgroundColor: 'white',
+                        width: windowWidth * 0.9,
+                        height: windowWidth * 0.9,
+                        borderRadius: windowWidth * 0.9 / 2,
+                        top: windowHeight * 0.20,
+                        left: windowWidth * 0.05,
+                        shadowColor: '#333333',
+                        shadowOffset: { width: windowWidth * 0.03, height: windowHeight * 0.03},
+                        shadowOpacity: 0.20,
+                        shadowRadius: 3.85,
+                        elevation: 20 }]} />
                     <Image
                         source={require('../assets/2706950.png')}
                         style={[styles.image, { width: windowWidth * 0.6, height: windowWidth * 0.6, bottom: windowHeight * 0.05 }]}

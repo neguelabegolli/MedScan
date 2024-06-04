@@ -4,14 +4,14 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "../component_style/ProfileScreenStyle"
+import {useAuth} from "./AuthContext";
 
-//TODO: I might have to remove the toggle ring button and only allow vibrations for each successful scan!
-//TODO: useEffects on another screen
-
+//TODO: add the privacy policy
 const ProfileScreen = () => {
     const navigation = useNavigation();
     const [isVibrationEnabled, setIsVibrationEnabled] = useState(false);
     const [isRingEnabled, setIsRingEnabled] = useState(false);
+    const { logout } = useAuth();
 
     const goToHistoryScreen = () => {
         navigation.navigate('HistoryScreen');
@@ -24,6 +24,14 @@ const ProfileScreen = () => {
     const goToHomeScreen = () => {
         navigation.navigate('HomeScreen');
     };
+
+
+    const handleLogout = () => {
+        logout();
+        // Navigate to the WelcomeScreen
+        navigation.navigate('WelcomeScreen');
+    };
+
 
     // Load settings from AsyncStorage when the component mounts
     useEffect(() => {
@@ -105,7 +113,7 @@ const ProfileScreen = () => {
                         <Text style={styles.smallText}>Account and its data will be permanently deleted.</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={logout}>
                     <View>
                         <Text style={[styles.largeText, { marginBottom: 5 }]}>Log Out</Text>
                         <Text style={styles.smallText}>Log-in information won't be saved.</Text>
@@ -145,5 +153,5 @@ const ProfileScreen = () => {
     );
 };
 
-export default ProfileScreen;
 
+export default ProfileScreen;

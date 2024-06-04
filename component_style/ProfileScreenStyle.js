@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
+//TODO: this needs to be edited
 const ProfileScreenStyle = StyleSheet.create({
     container: {
         flex: 1,
@@ -14,7 +15,7 @@ const ProfileScreenStyle = StyleSheet.create({
         width: 180,
         height: 180,
         resizeMode: 'contain',
-        bottom: 50,
+        bottom: 40,
     },
     containerColumn: {
         width: '85%',

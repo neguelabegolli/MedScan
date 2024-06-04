@@ -4,6 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import styles from "../component_style/HomeScreenStyle"
 
+//nothing to be changed here
 const HomeScreen = () => {
     const navigation = useNavigation();
 
@@ -78,4 +79,3 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
-

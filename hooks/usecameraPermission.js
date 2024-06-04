@@ -2,6 +2,7 @@ import {Camera} from "expo-camera";
 import * as React from "react";
 import {Alert, Linking, Platform} from "react-native";
 
+//only the camera permission
 export default function useCameraPermission() {
     const [status, setHasPermission] = React.useState(null);
 
@@ -19,6 +20,7 @@ export default function useCameraPermission() {
 
     return status;
 }
+
 
 const showPermissionAlert = () => {
     Alert.alert(

@@ -2,16 +2,10 @@ import React from 'react';
 import { View, ImageBackground, StyleSheet, Image, Dimensions, Text, TouchableOpacity } from 'react-native';
 import styles from "../component_style/WelcomeScreenStyle";
 
-//TODO: Ask Philipp about the XCode build fails and to give permission for the authentication
-
-//TODO: if you have time, tomorrow, try to transfer the entire project to the ThesisApp
-// and check whether the problems persist there. If not give that project as the final one to Philipp
-
-//TODO: Ask Krisela to give you the logic for the toolbar and buttons
-//TODO: Check everything also on the android Version
-
-//TODO: put the other effects on the profile screen
-
+//TODO: add Terms and Conditions, remove remember me
+//TODO: translate the app to German
+//TODO: fix the margins of the ProfileScreen
+//TODO: add the privacy policy in the end
 
 const WelcomeScreen = ({ navigation }) => {
 

@@ -10,6 +10,7 @@ import useCameraPermission from "../hooks/usecameraPermission";
 import useVibrationSoundEffects from "../hooks/useVibrationSoundEffects";
 import styles from "../component_style/QRScannerScreenStyle";
 
+//nothing to be changed here also
 const QRScannerScreen = () => {
 
     //maximal length of the scanned data, which can be shown
@@ -120,18 +121,18 @@ const QRScannerScreen = () => {
                         scannedData}
                     </Text>
                     <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={continueScanning}
-                    >
-                        <Text style={styles.buttonText}>Continue Scanning</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={sendDataToBackend} // Call function to send data to backend
-                    >
-                        <Text style={styles.buttonText}>Send Data</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={continueScanning}
+                        >
+                            <Text style={styles.buttonText}>Continue Scanning</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={sendDataToBackend} // Call function to send data to backend
+                        >
+                            <Text style={styles.buttonText}>Send Data</Text>
+                        </TouchableOpacity>
                     </View>
                     <TouchableOpacity
                         style={[styles.button, { backgroundColor: '#66b2ff', marginTop: 20,}]}

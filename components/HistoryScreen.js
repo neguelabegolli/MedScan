@@ -5,6 +5,7 @@ import ScanContext from './ScanContext';
 import { useNavigation } from "@react-navigation/native";
 import styles from "../component_style/HistoryScreenStyle"
 
+//recommendation: add the search bar (optional from relevance cycle)
 const HistoryScreen = () => {
     const navigation = useNavigation();
     const { scanHistory } = useContext(ScanContext);
@@ -81,4 +82,3 @@ const HistoryScreen = () => {
 };
 
 export default HistoryScreen;
-

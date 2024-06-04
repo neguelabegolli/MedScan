@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
-
-//TODO: Philipp said you can delete this screen
-
+//make this screen as the privacy policy one
 const ChangePasswordScreen = ({ navigation }) => {
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
