@@ -40,13 +40,30 @@ it will be used to ensure safe clincal decisions.
 -  Commit and push
 -  Wait for pull request to be merged
 
+### Installation
+
+1. **Clone the Repository**
+- git clone https://github.com/neguelabegolli/MedScan.git
+- cd MedScan
+
+2. **Install Dependencies**
+- npm install
+
+3. **Start the Server**
+- npm start
+
+5. **Run the App on iOS or Android**
+- iOS:
+npx expo run:ios (optional -device; To choose a device to test the camera functionality. Make sure you connect your laptop to the device of your choice).
+- Android:
+npm run android
+
 ## Acknowledgements
 
 - React Native
 - Expo / Expo Go
 - POCALConnect
-
-
+- React-Native-App-Auth
 
 
 
