@@ -7,7 +7,6 @@ import styles from "../component_style/WelcomeScreenStyle";
 //TODO: fix the margins of the ProfileScreen
 
 const WelcomeScreen = ({ navigation }) => {
-
     const handleContinue = () => {
         //navigate to the login/signup screen
         navigation.navigate('LoginScreen');

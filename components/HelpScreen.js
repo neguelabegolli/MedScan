@@ -153,5 +153,4 @@ const HelpScreen = ({ navigation }) => {
         </View>
     );
 };
-
 export default HelpScreen;

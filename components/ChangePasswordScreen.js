@@ -6,7 +6,7 @@ import {View, Text, StyleSheet, Image, ScrollView, Linking, TouchableOpacity} fr
 // in the terms and conditions and the profile tab
 
 
-//a fake email, shall be changed
+//a fake email, shall be changed later
 const handleEmailPress = () => {
     console.log('Opening email application...');
     Linking.openURL('mailto:xyz@mytum.de');

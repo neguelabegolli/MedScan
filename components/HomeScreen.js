@@ -17,7 +17,6 @@ const HomeScreen = () => {
         console.log('Navigating to ProfileScreen...');
         navigation.navigate('ProfileScreen');
     };
-
     const goToHistoryScreen = () => {
         console.log('Navigating to HistoryScreen...');
         navigation.navigate('HistoryScreen');

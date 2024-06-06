@@ -11,7 +11,7 @@ const HistoryScreen = () => {
     const { scanHistory } = useContext(ScanContext);
 
     const goToHistoryScreen = () => {
-        //we are already here
+        //we are already here!
     };
 
     const goToProfileScreen = () => {

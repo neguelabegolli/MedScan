@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from "react-native";
 
-//the styles should not have been divided from the rest of the component
+//the styles should not have been divided from the rest of the component!
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 

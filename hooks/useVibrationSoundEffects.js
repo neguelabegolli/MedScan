@@ -3,7 +3,7 @@ import React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
-//vibration only, custom hook
+//vibration only, custom hook 
 export default function useVibrationSoundEffects() {
     //Vibration-Ring logic
     const [isVibrationEnabled, setIsVibrationEnabled] = useState(false);

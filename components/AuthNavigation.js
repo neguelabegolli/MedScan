@@ -13,7 +13,6 @@ import ChangePasswordScreen from "./ChangePasswordScreen";
 
 
 const Stack = createStackNavigator();
-
 //The authentication flow, when the user is and is not authenticated
 const AuthNavigation = () => {
     const { isAuthenticated } = useAuth();

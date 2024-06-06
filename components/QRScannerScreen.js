@@ -10,6 +10,7 @@ import useCameraPermission from "../hooks/usecameraPermission";
 import useVibrationSoundEffects from "../hooks/useVibrationSoundEffects";
 import styles from "../component_style/QRScannerScreenStyle";
 
+//we have chosen expo-camera, however can be migrated to react-native vision camera
 const QRScannerScreen = () => {
 
     //maximal length of the scanned data, which can be shown into the pop-up window

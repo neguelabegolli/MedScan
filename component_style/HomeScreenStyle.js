@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
-//the styles should not have been divided from the rest of the component
+//the styles should not have been divided from the rest of the component!
 const HomeScreenStyle = StyleSheet.create({
     container: {
         flex: 1,

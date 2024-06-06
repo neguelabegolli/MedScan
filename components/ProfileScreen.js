@@ -58,7 +58,7 @@ const ProfileScreen = () => {
         loadSettings();
     }, []);
 
-    //saves our choices
+    //saves our choices for vibrations and ringings (not yet)
     const saveSettings = async () => {
         try {
             await AsyncStorage.setItem('vibrateSetting', JSON.stringify(isVibrationEnabled));
