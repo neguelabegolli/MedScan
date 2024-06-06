@@ -3,10 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, Switch, Dimensions } f
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from "../component_style/ProfileScreenStyle"
-import {useAuth} from "./AuthContext";
+import styles from "../component_style/ProfileScreenStyle";
+import { useAuth } from "./AuthContext";
 
-//TODO: add the privacy policy
+// TODO: add the privacy policy
 const ProfileScreen = () => {
     const navigation = useNavigation();
     const [isVibrationEnabled, setIsVibrationEnabled] = useState(false);
@@ -25,13 +25,15 @@ const ProfileScreen = () => {
         navigation.navigate('HomeScreen');
     };
 
+    const goToPrivacyPolicyScreen = () => {
+        navigation.navigate('ChangePasswordScreen');
+    };
 
     const handleLogout = () => {
         logout();
         // Navigate to the WelcomeScreen
         navigation.navigate('WelcomeScreen');
     };
-
 
     // Load settings from AsyncStorage when the component mounts
     useEffect(() => {
@@ -113,14 +115,14 @@ const ProfileScreen = () => {
                         <Text style={styles.smallText}>Account and its data will be permanently deleted.</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonContainer} onPress={logout}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={handleLogout}>
                     <View>
                         <Text style={[styles.largeText, { marginBottom: 5 }]}>Log Out</Text>
                         <Text style={styles.smallText}>Log-in information won't be saved.</Text>
                     </View>
                 </TouchableOpacity>
                 <Text style={styles.title}>Privacy</Text>
-                <TouchableOpacity style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={goToPrivacyPolicyScreen}>
                     <View>
                         <Text style={[styles.largeText, { marginBottom: 5 }]}>Privacy Policy</Text>
                         <Text style={styles.smallText}>Follow our policies that benefit you.</Text>
@@ -132,13 +134,15 @@ const ProfileScreen = () => {
                     <MaterialIcons
                         name="history"
                         size={36}
-                        color="#333333" />
+                        color="#333333"
+                    />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.profileButton} onPress={goToProfileScreen}>
                     <MaterialIcons
                         name="account-circle"
                         size={32}
-                        color="#333333" />
+                        color="#333333"
+                    />
                 </TouchableOpacity>
             </View>
             <View style={styles.qrButtonContainer}>
@@ -146,12 +150,12 @@ const ProfileScreen = () => {
                     <MaterialIcons
                         name="qr-code"
                         size={50}
-                        color="white" />
+                        color="white"
+                    />
                 </TouchableOpacity>
             </View>
         </View>
     );
 };
-
 
 export default ProfileScreen;

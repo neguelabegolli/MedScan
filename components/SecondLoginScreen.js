@@ -99,7 +99,7 @@ const SecondLoginScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.rememberMeContainer}>
-                    <Text style={styles.rememberMeText}>Remember Me</Text>
+                    <Text style={styles.rememberMeText}>Agree to Terms & Conditions</Text>
                     <TouchableOpacity onPress={() => setRememberPassword(!rememberPassword)}>
                         <View style={styles.checkbox}>
                             {rememberPassword && (
@@ -113,7 +113,7 @@ const SecondLoginScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity>
-                    <Text style={styles.forgotPassword}>Forgot Password?</Text>
+                    <Text style={styles.forgotPassword}>Terms & Conditions</Text>
                 </TouchableOpacity>
                 {errorMessage !== '' && (
                     <Text style={styles.errorText}>{errorMessage}</Text>
