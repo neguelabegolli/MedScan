@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, Image, Dimensions, Linking } from 'react-native';
 import styles from "../component_style/LoginScreenStyle"
 
-//nothing to be changed here
 const LoginScreen = ({ navigation }) => {
     const handleSignIn = () => {
         console.log('Signing in...');
         navigation.navigate('SecondLoginScreen');
     };
 
+    //sign up for the first time through doctor's platform, hardcoded
     const handleSignUp = () => {
         console.log('Signing in...');
         Linking.openURL('https://doctorsplatform.vercel.app/sign-up');

@@ -2,15 +2,14 @@ import React from 'react';
 import { View, ImageBackground, StyleSheet, Image, Dimensions, Text, TouchableOpacity } from 'react-native';
 import styles from "../component_style/WelcomeScreenStyle";
 
-//TODO: add Terms and Conditions, remove remember me
+//These are only some TODOs, for future development rounds
 //TODO: translate the app to German
 //TODO: fix the margins of the ProfileScreen
-//TODO: add the privacy policy in the end
 
 const WelcomeScreen = ({ navigation }) => {
 
     const handleContinue = () => {
-        // Navigate to the next screen
+        //navigate to the login/signup screen
         navigation.navigate('LoginScreen');
     };
 

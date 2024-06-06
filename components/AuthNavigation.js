@@ -14,6 +14,7 @@ import ChangePasswordScreen from "./ChangePasswordScreen";
 
 const Stack = createStackNavigator();
 
+//The authentication flow, when the user is and is not authenticated
 const AuthNavigation = () => {
     const { isAuthenticated } = useAuth();
 
@@ -33,6 +34,7 @@ const AuthNavigation = () => {
                     <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ headerShown: false }} />
                     <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
                     <Stack.Screen name="SecondLoginScreen" component={SecondLoginScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} options={{ headerShown: false }} />
                 </>
             )}
         </Stack.Navigator>

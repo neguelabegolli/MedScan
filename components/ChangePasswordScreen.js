@@ -1,6 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, ScrollView, Linking, TouchableOpacity} from 'react-native';
 
+
+//This no change password screen, it is actually a privacy policy used
+// in the terms and conditions and the profile tab
+
+
+//a fake email, shall be changed
 const handleEmailPress = () => {
     console.log('Opening email application...');
     Linking.openURL('mailto:xyz@mytum.de');

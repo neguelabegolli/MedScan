@@ -2,7 +2,7 @@ import {Camera} from "expo-camera";
 import * as React from "react";
 import {Alert, Linking, Platform} from "react-native";
 
-//only the camera permission
+//the camera permission only, custom hook
 export default function useCameraPermission() {
     const [status, setHasPermission] = React.useState(null);
 

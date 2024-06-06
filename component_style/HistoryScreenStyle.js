@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
+//the styles should not have been divided from the rest of the component
 const { width } = Dimensions.get('window');
 const HistoryScreenStyle = StyleSheet.create({
     container: {

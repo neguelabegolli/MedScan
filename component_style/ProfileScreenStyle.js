@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-//TODO: this needs to be edited
+//TODO: this needs to be edited!
 const ProfileScreenStyle = StyleSheet.create({
     container: {
         flex: 1,

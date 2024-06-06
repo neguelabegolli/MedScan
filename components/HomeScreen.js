@@ -4,10 +4,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import styles from "../component_style/HomeScreenStyle"
 
-//nothing to be changed here
 const HomeScreen = () => {
     const navigation = useNavigation();
 
+    //navigation for the toolbar
     const goToHelpScreen = () => {
         console.log('Navigating to HelpScreen...');
         navigation.navigate('HelpScreen');

@@ -11,7 +11,7 @@ const HistoryScreen = () => {
     const { scanHistory } = useContext(ScanContext);
 
     const goToHistoryScreen = () => {
-        // Already Here
+        //we are already here
     };
 
     const goToProfileScreen = () => {
@@ -22,9 +22,10 @@ const HistoryScreen = () => {
         navigation.navigate('HomeScreen');
     };
 
+    //extraction of data
     const extractTypeName = (dataType) => {
         const parts = dataType.split('.');
-        return parts[parts.length - 1]; // Extracting the last part after splitting by '.'
+        return parts[parts.length - 1];
     };
 
     return (

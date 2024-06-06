@@ -4,16 +4,21 @@ import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/AntDesign';
 import styles from "../component_style/HelpScreenStyle"
 
+/*
+A guidance component, containing five detailed steps to scan and send the data
+- the support email, in the end of "tutorial"
+ */
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-//nothing to be changed here
 const HelpScreen = ({ navigation }) => {
     const goBack = () => {
         console.log('Going back from HelpScreen...');
         navigation.goBack();
     };
 
+    //fake email, shall be changed
     const handleEmailPress = () => {
         console.log('Opening email application...');
         Linking.openURL('mailto:xyz@mytum.de');
@@ -148,6 +153,5 @@ const HelpScreen = ({ navigation }) => {
         </View>
     );
 };
-
 
 export default HelpScreen;

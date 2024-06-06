@@ -6,9 +6,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "../component_style/ProfileScreenStyle";
 import { useAuth } from "./AuthContext";
 
-// TODO: add the privacy policy
 const ProfileScreen = () => {
     const navigation = useNavigation();
+
+    //constants to enable toggle buttons, the ring is not yet fixed in the app
+    //to test the vibration, make sure you have it enabled on your phone first
     const [isVibrationEnabled, setIsVibrationEnabled] = useState(false);
     const [isRingEnabled, setIsRingEnabled] = useState(false);
     const { logout } = useAuth();
@@ -18,7 +20,7 @@ const ProfileScreen = () => {
     };
 
     const goToProfileScreen = () => {
-        // Already on the Profile Screen
+        //we are already on the Profile Screen
     };
 
     const goToHomeScreen = () => {
@@ -29,13 +31,14 @@ const ProfileScreen = () => {
         navigation.navigate('ChangePasswordScreen');
     };
 
+    //helper function to logout
     const handleLogout = () => {
         logout();
-        // Navigate to the WelcomeScreen
         navigation.navigate('WelcomeScreen');
     };
 
-    // Load settings from AsyncStorage when the component mounts
+    //when the toggle button is switch, the ring functions,
+    // and is persistent until we turn it off ourselves
     useEffect(() => {
         const loadSettings = async () => {
             try {
@@ -52,10 +55,10 @@ const ProfileScreen = () => {
                 console.error('Error loading settings: ', error);
             }
         };
-
         loadSettings();
     }, []);
 
+    //saves our choices
     const saveSettings = async () => {
         try {
             await AsyncStorage.setItem('vibrateSetting', JSON.stringify(isVibrationEnabled));

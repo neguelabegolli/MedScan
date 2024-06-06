@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 
 const ScanContext = createContext();
 
-//nothing to be changed here
+//just the scanning context of the data, helper component
 export const ScanProvider = ({ children }) => {
     const [scanHistory, setScanHistory] = useState([]);
 

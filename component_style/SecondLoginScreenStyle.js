@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+//the styles should not have been divided from the rest of the component
 const SecondLoginScreenStyle = StyleSheet.create({
     background: {
         flex: 1,

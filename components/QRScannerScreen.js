@@ -10,46 +10,52 @@ import useCameraPermission from "../hooks/usecameraPermission";
 import useVibrationSoundEffects from "../hooks/useVibrationSoundEffects";
 import styles from "../component_style/QRScannerScreenStyle";
 
-//nothing to be changed here also
 const QRScannerScreen = () => {
 
-    //maximal length of the scanned data, which can be shown
+    //maximal length of the scanned data, which can be shown into the pop-up window
     const MAX_DISPLAY_LENGTH = 30;
 
+    //scanned data string
     const [scanned, setScanned] = useState(false);
     const [scannedData, setScannedData] = useState(null);
+
+    //flashlight constant
     const [torchOn, setTorchOn] = useState(false);
+
+    //zoom slider constant
     const [zoom, setZoom] = useState(0);
+
+    //camera reference
     const cameraRef = useRef(null);
     const navigation = useNavigation();
 
-    // Fetch camera permission status using the custom hook
+    //fetching the camera permission, using the hook
     const hasPermission = useCameraPermission();
 
-    // Fetch vibration using the custom hook
+    //fetching the vibration sounds effects hook
     const [isVibrationEnabled, isRingEnabled] = useVibrationSoundEffects();
 
-    //Adding the scanned data to the history tab:
+    //adding the scanned data to the history tab
     const { addScanToHistory } = useContext(ScanContext);
 
-    //Handling all the scanned barcodes:
+    //handling all the scanned barcodes:
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
         setScannedData(data);
         addScanToHistory(data, type);
 
-        // Trigger vibration
+        //triggering the vibration when the scanning is successful and enabled
         if (isVibrationEnabled) {
             Vibration.vibrate();
         }
     };
 
-    //Torch functionality
+    //flashlight (torch) functionality
     const toggleTorch = () => {
         setTorchOn((prev) => !prev);
     };
 
-    //Handling thr zoomSlider
+    //handling thr zoom slider (no gesture handler enabled here)
     const handleZoomSlider = (value) => {
         const maxZoomLevel = 2;
         const sliderMaxValue = 100;
@@ -57,24 +63,24 @@ const QRScannerScreen = () => {
         setZoom(mappedZoom);
     };
 
-    //Window after scanning
+    //window after scanning
     const continueScanning = () => {
         setScanned(false);
         setScannedData(null);
     };
 
-    //Button to go back to the HomeScreen
+    //button to go back to the HomeScreen (I it not really needed)
     const goToHomeScreen = () => {
         navigation.navigate('HomeScreen');
     };
 
-    // Function to handle sending data to the backend
+    //function to handle sending data to the backend (here there is a bug
+    //that needs to be fixed, the scanned data is shown twice when the "Send Data"
+    //button is clicked; needs to be edited)
     const sendDataToBackend = () => {
-        // TODO: Implement sending data logic here
         addScanToHistory(scannedData, 'Data Matrix', 'Sent to Backend', true)
     };
 
-    //UI Rendering
     if (hasPermission === null) {
         return <Text>Requesting for camera permission</Text>;
     }

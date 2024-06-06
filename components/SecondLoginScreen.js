@@ -4,37 +4,52 @@ import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
-import {useAuth} from "./AuthContext";
+import { useAuth } from "./AuthContext";
 import styles from "../component_style/SecondLoginScreenStyle";
 
-//TODO: Add the terms and conditions here
 const SecondLoginScreen = ({ navigation }) => {
+
+    //the email and password components
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    //when clicked, the password is shown
     const [showPassword, setShowPassword] = useState(false);
-    const [rememberPassword, setRememberPassword] = useState(false);
+
+    //when not clicked cannot be logged in
+    const [agreeToTerms, setAgreeToTerms] = useState(false);
+
+    //error message showing, when email/password wrongly entered,
+    // or when terms and conditions are not clicked
     const [errorMessage, setErrorMessage] = useState('');
 
-    const {login} = useAuth();
+    const { login } = useAuth();
 
+    //login function
     const handleLogin = async () => {
+        if (!agreeToTerms) {
+            //error message for terms and conditions not clicked
+            setErrorMessage('You must agree to the terms and conditions to log in.');
+            return;
+        }
+
         console.log('Logging in...');
 
-        if (email == 'neguelabegolli@gmail.com' && password == '123') {
+        if (email === 'neguelabegolli@gmail.com' && password === '123') {
             login();
             return;
         }
 
         try {
             const response = await axios.post('http://doctorsplatform.vercel.app/api/login', {
-                email: email,
-                password: password,
+                email,
+                password,
             });
 
-            const {isAuthenticated, user} = response.data;
+            const { isAuthenticated, user } = response.data;
 
             if (isAuthenticated) {
-                const {id, firstName, lastName} = user;
+                const { id, firstName, lastName } = user;
 
                 const setCookieHeader = response.headers['set-cookie'];
                 if (setCookieHeader) {
@@ -42,7 +57,7 @@ const SecondLoginScreen = ({ navigation }) => {
                     await SecureStore.setItemAsync('authCookie', cookieValue);
                     console.log('Cookie received', cookieValue);
                 }
-                const userDataToStore = {id, firstName, lastName};
+                const userDataToStore = { id, firstName, lastName };
                 await AsyncStorage.setItem('userData', JSON.stringify(userDataToStore));
                 login(userDataToStore);
             } else {
@@ -54,10 +69,10 @@ const SecondLoginScreen = ({ navigation }) => {
         }
     };
 
-
-    const handleForgotPassword = () => {
-        console.log('Forgot password clicked');
-        // TODO: Implement navigation to the Terms & Conditions
+    //navigator to the privacy policy/terms and conditions
+    const handleTermsAndConditions = () => {
+        console.log('Terms and conditions clicked');
+        navigation.navigate('ChangePasswordScreen');
     };
 
     return (
@@ -75,7 +90,6 @@ const SecondLoginScreen = ({ navigation }) => {
                         value={email}
                         onChangeText={setEmail}
                         placeholderTextColor={'#333333'}
-                        col
                     />
                 </View>
                 <View style={styles.passwordContainer}>
@@ -100,11 +114,11 @@ const SecondLoginScreen = ({ navigation }) => {
                 </View>
                 <View style={styles.rememberMeContainer}>
                     <Text style={styles.rememberMeText}>Agree to Terms & Conditions</Text>
-                    <TouchableOpacity onPress={() => setRememberPassword(!rememberPassword)}>
+                    <TouchableOpacity onPress={() => setAgreeToTerms(!agreeToTerms)}>
                         <View style={styles.checkbox}>
-                            {rememberPassword && (
+                            {agreeToTerms && (
                                 <MaterialIcons
-                                    name= 'check'
+                                    name='check'
                                     size={16}
                                     style={styles.checkIcon}
                                 />
@@ -112,13 +126,17 @@ const SecondLoginScreen = ({ navigation }) => {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleTermsAndConditions}>
                     <Text style={styles.forgotPassword}>Terms & Conditions</Text>
                 </TouchableOpacity>
                 {errorMessage !== '' && (
                     <Text style={styles.errorText}>{errorMessage}</Text>
                 )}
-                <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+                <TouchableOpacity
+                    style={[styles.loginButton, { backgroundColor: agreeToTerms ? '#333333' : '#333333' }]}
+                    onPress={handleLogin}
+                    disabled={!agreeToTerms}
+                >
                     <Text style={styles.loginButtonText}>Log In</Text>
                 </TouchableOpacity>
             </View>

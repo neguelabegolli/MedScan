@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
 
-//don't change anything here
+//The authentication context, helper component
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
@@ -40,6 +40,9 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
         setUser(null)
     }
+
+    //don't have this function on my app, hardcode only
+
     /*const signUp = (userData) => {
         setIsAuthenticated(true);
         setUser(userData);
